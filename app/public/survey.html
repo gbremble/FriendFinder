@@ -8,10 +8,34 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Friend Finder</title>
   </head>
   <body>
-    <h1>Hello, world!</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Survey Questions</h1>
+                <hr class="my-auto">
+                <h2>About You</h2>
+                <form>
+                    <div class="form-group">
+                      <label for="userName">Full Name</label>
+                      <input type="text" class="form-control" id="userName" placeholder="Required">
+                    </div>
+                    <div class="form-group">
+                      <label for="userPhotoURL">Link to a Flattering Photo</label>
+                      <input type="text" class="form-control" id="userPhotoURL" placeholder="Required">
+                    </div>
+                  </form>
+                  <hr class="my-auto">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="button" class="btn btn-primary btn-lg btn-block">Submit</button>
+            </div>
+        </div>
+    </div>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
