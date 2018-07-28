@@ -39,7 +39,7 @@
                     <strong>Question 1</strong>
                 </p>
                 <p>Your mind is always buzzing with unexplored ideas and plans.</p>
-                <select class="chosen-select" id="q1">
+                <select class="custom-select" id="q1">
                     <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -53,7 +53,7 @@
                     <strong>Question 2</strong>
                 </p>
                 <p>Generally speaking, you rely more on your experience than your imagination.</p>
-                <select class="chosen-select" id="q2">
+                <select class="custom-select" id="q2">
                     <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -67,7 +67,7 @@
                     <strong>Question 3</strong>
                 </p>
                 <p>You find it easy to stay relaxed and focused even when there is some pressure.</p>
-                <select class="chosen-select" id="q3">
+                <select class="custom-select" id="q3">
                     <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -81,7 +81,7 @@
                     <strong>Question 4</strong>
                 </p>
                 <p>You rarely do something just out of sheer curiosity.</p>
-                <select class="chosen-select" id="q4">
+                <select class="custom-select" id="q4">
                     <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -95,7 +95,7 @@
                     <strong>Question 5</strong>
                 </p>
                 <p>People can rarely upset you.</p>
-                <select class="chosen-select" id="q5">
+                <select class="custom-select" id="q5">
                     <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -109,7 +109,7 @@
                     <strong>Question 6</strong>
                 </p>
                 <p>It is often difficult for you to relate to other people’s feelings.</p>
-                <select class="chosen-select" id="q6">
+                <select class="custom-select" id="q6">
                     <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -123,7 +123,7 @@
                     <strong>Question 7</strong>
                 </p>
                 <p>In a discussion, truth should be more important than people’s sensitivities.</p>
-                <select class="chosen-select" id="q7">
+                <select class="custom-select" id="q7">
                     <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -137,7 +137,7 @@
                     <strong>Question 8</strong>
                 </p>
                 <p>You rarely get carried away by fantasies and ideas.</p>
-                <select class="chosen-select" id="q8">
+                <select class="custom-select" id="q8">
                     <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -152,7 +152,7 @@
                 </p>
                 <p>You think that everyone’s views should be respected regardless of whether they
                     are supported by facts or not.</p>
-                <select class="chosen-select" id="q9">
+                <select class="custom-select" id="q9">
                     <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -166,7 +166,7 @@
                     <strong>Question 10</strong>
                 </p>
                 <p>You feel more energetic after spending time with a group of people.</p>
-                <select class="chosen-select" id="q10">
+                <select class="custom-select" id="q10">
                     <option value=""></option>
                     <option value="1">1 (Strongly Disagree)</option>
                     <option value="2">2</option>
@@ -183,6 +183,26 @@
         </div>
     </div>
 
+    <div id="newFriendModal" class="modal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Your New Best Friend</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <h3 id="newFriendName"></h3>
+                    <img id="newFriendImage" src="" alt="" class="img-thumbnail">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
@@ -191,6 +211,62 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        // Capture the form inputs
+        $("#submit").on("click", function (event) {
+            event.preventDefault();
+
+            // VAlidate that all selects and text input forms are filled
+            function validateForm() {
+                var isValid = true;
+                $(".form-control").each(function () {
+                    if ($(this).val() === "") {
+                        isValid = false;
+                    }
+                });
+
+                $(".custom-select").each(function () {
+                    if ($(this).val() === "") {
+                        isValid = false;
+                    }
+                });
+                return isValid;
+            }
+
+            // If all required fields are filled
+            if (validateForm()) {
+                // Create an object for the user's data
+                var userData = {
+                    name: $("#name").val(),
+                    photo: $("#photo").val(),
+                    scores: [
+                        $("#q1").val(),
+                        $("#q2").val(),
+                        $("#q3").val(),
+                        $("#q4").val(),
+                        $("#q5").val(),
+                        $("#q6").val(),
+                        $("#q7").val(),
+                        $("#q8").val(),
+                        $("#q9").val(),
+                        $("#q10").val()
+                    ]
+                };
+
+                // AJAX post the data to the friends API
+                $.post("/api/friends", surveyData, function (data) {
+                    $("#newFriendName").text(data.name);
+                    $("#newFriendImage").attr("src", data.photo);
+                    $("#newFriendModal").modal("toggle");
+                });
+            } else {
+                alert(
+                    "To ensure the best match, please fill out all fields before submitting."
+                );
+            }
+        });
+    </script>
 </body>
 
 </html>
