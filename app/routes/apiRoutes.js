@@ -21,20 +21,20 @@ module.exports = function (app) {
         };
 
         // loop through friends array
-        for (var i = 0; i < friends.length; i++) {
+        for (var i = 0; i < friendsData.length; i++) {
 
             // check the scores
-            for (var j = 0; j < friends[i].scores.length; j++) {
+            for (var j = 0; j < friendsData[i].scores.length; j++) {
 
                 // calculate ∆ between scores; this is the "proprietary magic"
-                scoreDelta = scoreDelta + Math.abs(parseInt(friends[i].scores[j]) - parseInt(surveyData.scores[j]));
+                scoreDelta = scoreDelta + Math.abs(parseInt(friendsData[i].scores[j]) - parseInt(surveyData.scores[j]));
 
                 console.log(scoreDelta);
 
                 // add the potential best match to the current friend match var
                 if (scoreDelta <= currentFriendMatch.answerDelta) {
-                    currentFriendMatch.name = friends[i].name;
-                    currentFriendMatch.photo = friends[i].photo;
+                    currentFriendMatch.name = friendsData[i].name;
+                    currentFriendMatch.photo = friendsData[i].photo;
                     currentFriendMatch.answerDelta = scoreDelta;
                 }
             }
@@ -43,7 +43,7 @@ module.exports = function (app) {
         console.log(currentFriendMatch.name);
 
         // add a new object to the friends array
-        friends.push(surveyData);
+        friendsData.push(surveyData);
 
         // show your friend on the page
         res.json(currentFriendMatch);
