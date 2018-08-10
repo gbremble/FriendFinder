@@ -1,5 +1,5 @@
 // ### Load Data ###
-var friendsData = require('./../data/friends');
+var friendsData = require('./../data/friends.js');
 
 // ### Routing ###
 module.exports = function (app) {
