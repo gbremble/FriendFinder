@@ -4,13 +4,13 @@ var friendsData = require('./../data/friends');
 // ### Routing ###
 module.exports = function (app) {
 
-    app.get('/api/friends', function (req, res) {
+    app.get('/api/friends', function (request, response) {
         res.json(friendsData);
     });
 
-    app.post('/api/friends', function (req, res) {
+    app.post('/api/friends', function (request, response) {
         // declare variables
-        var surveyData = req.body;
+        var surveyData = request.body;
         var scoreDelta = 0;
 
         // initially you have no friends, but we'll fix that
